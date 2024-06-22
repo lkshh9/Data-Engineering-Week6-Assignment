@@ -1,7 +1,7 @@
 # Data-Engineering-Week6-Assignment
 
 
-![Assignment](../../Assignment.png)
+![Assignment](./images/Assignment.png)
 
 
 # ADF Data Pipelines
@@ -22,7 +22,7 @@ This repository contains Azure Data Factory (ADF) pipeline configurations for va
        - Installed SQL Server and SSMS.
        - Created a database - "Lokesh1" and table - "EmpSalary", and    inserted sample data.
 
-       ![SQL ssms](../../SQLData.png)
+       ![SQL ssms](./images/SQLData.png)
 
 
 
