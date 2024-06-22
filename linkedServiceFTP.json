@@ -1,0 +1,16 @@
+{
+    "name": "FTPServerLinkedService",
+    "properties": {
+      "type": "FtpServer",
+      "typeProperties": {
+        "host": "ftp.yourserver.com",
+        "port": 21,
+        "userName": "yourusername",
+        "password": {
+          "type": "SecureString",
+          "value": "yourpassword"
+        }
+      }
+    }
+  }
+  

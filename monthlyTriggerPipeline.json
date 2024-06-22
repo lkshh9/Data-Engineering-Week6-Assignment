@@ -1,0 +1,32 @@
+{
+    "name": "MonthlyTrigger",
+    "properties": {
+      "type": "ScheduleTrigger",
+      "typeProperties": {
+        "recurrence": {
+          "frequency": "Month",
+          "interval": 1,
+          "schedule": {
+            "weekDays": [
+              "Saturday"
+            ],
+            "monthDays": [
+              -1
+            ],
+            "hours": [
+              0
+            ],
+            "minutes": [
+              0
+            ],
+            "second": 0
+          }
+        },
+        "pipeline": {
+          "referenceName": "PipelineToRunMonthly",
+          "type": "PipelineReference"
+        }
+      }
+    }
+  }
+  

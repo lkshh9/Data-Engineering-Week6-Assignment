@@ -1,0 +1,65 @@
+{
+    "name": "IncrementalLoadPipeline",
+    "properties": {
+      "activities": [
+        {
+          "name": "LookupLastRunTime",
+          "type": "Lookup",
+          "dependsOn": [],
+          "typeProperties": {
+            "source": {
+              "type": "SqlSource",
+              "sqlReaderQuery": "SELECT MAX(LastModified) AS LastRunTime FROM ControlTable"
+            }
+          },
+          "dataset": {
+            "referenceName": "AzureSQLControlTableDataset",
+            "type": "DatasetReference"
+          }
+        },
+        {
+          "name": "CopyIncrementalData",
+          "type": "Copy",
+          "dependsOn": [
+            {
+              "activity": "LookupLastRunTime",
+              "dependencyConditions": [
+                "Succeeded"
+              ]
+            }
+          ],
+          "typeProperties": {
+            "source": {
+              "type": "SqlSource",
+              "sqlReaderQuery": "SELECT * FROM SourceTable WHERE LastModified > @pipeline().parameters.lastRunTime"
+            },
+            "sink": {
+              "type": "SqlSink",
+              "writeBatchSize": 10000,
+              "writeBatchTimeout": "00:10:00"
+            }
+          },
+          "inputs": [
+            {
+              "referenceName": "SourceTableDataset",
+              "type": "DatasetReference"
+            }
+          ],
+          "outputs": [
+            {
+              "referenceName": "DestinationTableDataset",
+              "type": "DatasetReference"
+            }
+          ]
+        }
+      ],
+      "parameters": {
+        "lastRunTime": {
+          "type": "String"
+        }
+      },
+      "annotations": [],
+      "lastPublishTime": "2024-06-22T00:00:00Z"
+    }
+  }
+  
